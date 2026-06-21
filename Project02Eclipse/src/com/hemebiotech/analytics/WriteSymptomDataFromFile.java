@@ -13,33 +13,29 @@ public class WriteSymptomDataFromFile implements ISymptomWriter {
 	private String filepath;
 	private Map<String, Integer> SymptomMap;
 	
-	// constructeur avec parametre
-	
+	// constructeur avec parametre	
 	public WriteSymptomDataFromFile (String filepath, Map<String, Integer> SymptomMap) {
 		this.filepath = filepath;
 		this.SymptomMap = SymptomMap;
 	}
 		
-		
 	@Override
-	public void WriteSymptoms() throws IOException {
+	public void WriteSymptoms(Map<String, Integer> SymptomMap) {
 		
-		FileWriter writer = new FileWriter(filepath + "output.txt");
-		
-		for (Map.Entry<String, Integer> entry : SymptomMap.entrySet()) {
-			//if (SymptomMap.containsKey(symptom)) {				
-			//if (!entry.getValue().contains()) {
-				
-				System.out.println(entry.getKey() + " : " + entry.getValue() + "\r\n");
-				
-				writer.write(entry.getKey() + " : " + entry.getValue() + "\r\n");
-				
-				continue;
-			//}
+		try {
+			FileWriter writer = new FileWriter(filepath + "output.txt");
+			
+			for (Map.Entry<String, Integer> entry : SymptomMap.entrySet()) {
+								
+					System.out.println(entry.getKey() + " : " + entry.getValue() + "\r\n");
+					
+					writer.write(entry.getKey() + " : " + entry.getValue() + "\r\n");
+			}
+	        writer.close();	
+	        
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		
-        writer.close();		
-		
 	}
 }
 

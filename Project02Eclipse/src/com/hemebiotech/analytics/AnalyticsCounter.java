@@ -13,6 +13,11 @@ public class AnalyticsCounter {
 	private static int rashCount = 0;		// initialize to 0
 	private static int pupilCount = 0;		// initialize to 0
 	
+	
+	// File workDir = new File(System.getProperty("user.dir"));
+	// File resourcesDir = new File(workDir, "resources") 
+	
+	
 	// err chemin d'accès manquant
 	private static String chemin = "C:\\Users\\C_local\\Documents\\Openclassrooms\\Developpeur_Java\\Projet_2\\Project_DA_Java_EN_Come_to_the_Rescue_of_a_Java_Application\\\\Project02Eclipse\\";
 		
@@ -50,7 +55,10 @@ public class AnalyticsCounter {
 		// creation objet writeSymptom de type ISymptomWriter (qui est une interface) et de classe WriteSymptomDataFromFile 
 		ISymptomWriter writeSymptom = new WriteSymptomDataFromFile(chemin, SymptomMap);
 		
-		writeSymptom.WriteSymptoms();
+		writeSymptom.WriteSymptoms(SymptomMap);
+		
+		
+		
 		
 		
 		
