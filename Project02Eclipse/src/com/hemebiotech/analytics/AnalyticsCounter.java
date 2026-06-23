@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class AnalyticsCounter {
 	private static int headacheCount = 0;	// initialize to 0 
@@ -17,22 +18,51 @@ public class AnalyticsCounter {
 	// File workDir = new File(System.getProperty("user.dir"));
 	// File resourcesDir = new File(workDir, "resources") 
 	
-	
-	// err chemin d'accès manquant
 	private static String chemin = "C:\\Users\\C_local\\Documents\\Openclassrooms\\Developpeur_Java\\Projet_2\\Project_DA_Java_EN_Come_to_the_Rescue_of_a_Java_Application\\\\Project02Eclipse\\";
-		
-	public static void main(String args[]) throws Exception {
+	
+	public static List <String> getSymptoms() {
 		
 		// creation objet readSymptom de type ISymptomReader (qui est une interface) et de classe ReadSymptomDataFromFile
 		ISymptomReader readSymptom = new ReadSymptomDataFromFile(chemin + "symptoms.txt");
-		
+				
 		// création objet Map clé=symptom et valeur=nb symptom
 		Map<String, Integer> SymptomMap = new HashMap <>();
-				
+						
 		// remplir une liste à partir du fichier
-		List<String> listSymptom = readSymptom.GetSymptoms();
+		return readSymptom.GetSymptoms();
 		
-		// boucler sur la ArrayList listSymptom 
+	}
+	
+	public static Map <String, Integer> countSymptoms(List <String> listSymptoms) {
+		return null;
+	} 
+	
+	public static Map <String, Integer> sortSymptoms(Map <String, Integer> mapSymptoms) {
+		
+		/*
+		 * transformer la HasMap en TreeMap
+		 * trier par valeur
+		 */
+		
+		Map<String, Integer> SymptomMap = new TreeMap <>();
+		
+		return null;
+	} 
+	
+	public static void writeSymptoms(Map <String, Integer> mapSymptoms) {
+		
+	} 
+	
+	public static void main(String args[]) throws Exception {
+		
+		List<String> listSymptom = AnalyticsCounter.getSymptoms();
+		
+		/* countSymptoms
+		 * sortSymptoms
+		 * writeSymptoms
+		 */
+				
+		// countSymptoms boucler sur la ArrayList listSymptom 
 		for(String symptom : listSymptom) {
 			
 			// ajout si clé non trouvé dans la map

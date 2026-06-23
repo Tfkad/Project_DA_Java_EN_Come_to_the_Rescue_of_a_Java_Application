@@ -10,6 +10,7 @@ import java.util.List;
  * Simple brute force implementation
  *
  */
+
 public class ReadSymptomDataFromFile implements ISymptomReader {
 
 	private String filepath;
