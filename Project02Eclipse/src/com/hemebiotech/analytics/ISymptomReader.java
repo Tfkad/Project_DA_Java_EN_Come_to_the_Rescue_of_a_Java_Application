@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface ISymptomReader {
 		
-	/*
+	/**
      * Returns the list of symptoms obtained from the data source
      *
      * If no data is available, this method returns an empty list rather
