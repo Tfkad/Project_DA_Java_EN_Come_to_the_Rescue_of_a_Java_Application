@@ -9,77 +9,97 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * Provides utility methods to read, count, sort, and write symptom data
+ *
+ * This class reads a list of symptoms from a data source, counts the number
+ * of occurrences of each symptom, sorts the results alphabetically, and
+ * writes the final statistics to an output file
+ */
+
 public class AnalyticsCounter {
-	// private static int headacheCount = 0;	// initialize to 0 
-	// private static int rashCount = 0;		// initialize to 0
-	// private static int pupilCount = 0;		// initialize to 0
 		
 	// File workDir = new File(System.getProperty("user.dir"));
-	// File resourcesDir = new File(workDir, "resources") 
+	// File resourcesDir = new File(workDir, "resources")
 	
+	// Path to the project directory containing the input and output files
 	private static String chemin = "C:\\Users\\C_local\\Documents\\Openclassrooms\\Developpeur_Java\\Projet_2\\Project_DA_Java_EN_Come_to_the_Rescue_of_a_Java_Application\\\\Project02Eclipse\\";
 	
+	/*
+     * Reads the list of symptoms from the input file
+     *
+     * @return a list containing all symptoms read from the data source
+     */	
 	public static List <String> getSymptoms() {
-		// creation objet readSymptom de type ISymptomReader (qui est une interface) et de classe ReadSymptomDataFromFile
 		ISymptomReader readSymptom = new ReadSymptomDataFromFile(chemin + "symptoms.txt");
-		
-		// remplir une liste à partir du fichier
 		return readSymptom.GetSymptoms();
 	}
 	
+	/*
+     * Counts the number of occurrences of each symptom
+     *
+     * @param listSymptoms the list of symptoms to analyze
+     * @return a map where the key is the symptom name and the value is its
+     * number of occurrences
+     */
 	public static Map <String, Integer> countSymptoms(List <String> listSymptoms) {
-		// création objet clé=symptom et valeur=nb symptom
 		Map<String, Integer> symptomMap = new HashMap <>();
-				
-		// countSymptoms boucler sur la ArrayList listSymptoms 
 		for(String symptom : listSymptoms) {
-			// ajout si clé non trouvé dans la map
 			if (!symptomMap.containsKey(symptom)) {
 				symptomMap.put(symptom, 1);
 			}
 			else {
-				// incrémente la valeur si clé existe déjà dans la Map
 				symptomMap.replace(symptom, symptomMap.get(symptom)+1);
 			}
 		}
 		return symptomMap;
 	} 
 
+	/*
+     * Sorts the symptoms alphabetically
+     *
+     * @param mapSymptoms the map containing symptom counts
+     * @return a {@code TreeMap} containing the same entries sorted by symptom
+     * name
+     */
 	public static Map <String, Integer> sortSymptoms(Map <String, Integer> mapSymptoms) {
-		// transformer la HasMap en TreeMap (trié)
-		
-		// création objet clé=symptom et valeur=nb symptom
 		Map <String, Integer> treeSymptomMap = new TreeMap <>();
-		
 		for (Map.Entry<String, Integer> entry : mapSymptoms.entrySet()) {
 			treeSymptomMap.putAll(mapSymptoms);
 		}	
 		return treeSymptomMap;
 	} 
 	
+	/*
+     * Writes the symptom statistics to the output file
+     *
+     * @param mapSymptoms the map containing the sorted symptom counts
+     */
 	public static void writeSymptoms(Map <String, Integer> mapSymptoms) {
-		// creation objet writeSymptom de type ISymptomWriter (qui est une interface) et de classe WriteSymptomDataFromFile 
 		ISymptomWriter writeSymptom = new WriteSymptomDataFromFile(chemin, mapSymptoms);
-				
-		// écrire dans un fichier les symptomes et les qté
 		writeSymptom.WriteSymptoms(mapSymptoms);
 	} 
 	
+	/*
+     * Runs the application
+     *
+     * The program performs the following steps:
+     *
+     * Reads the symptoms from the input file
+     * Counts the occurrences of each symptom
+     * Sorts the symptoms alphabetically
+     * Displays the results in the console
+     * Writes the results to an output file
+     * 
+     * @param args command-line arguments (not used)
+     * @throws Exception if an unexpected error occurs during execution
+     */
 	public static void main(String args[]) throws Exception {
-		// lecture du fichier des symptomes
 		List<String> listSymptom = AnalyticsCounter.getSymptoms();
-		
-		// compter par symptome				
 		Map <String, Integer> mapSymptom = AnalyticsCounter.countSymptoms(listSymptom);
-		
-		// tri des symptomes	
 		Map <String, Integer> treeMapSymptom = AnalyticsCounter.sortSymptoms(mapSymptom);
-		
-		// Print avant et après le tri
 		System.out.println(mapSymptom);
 		System.out.println(treeMapSymptom);
-		
-		// enregistrement des résultats dans un fichier
 		AnalyticsCounter.writeSymptoms(treeMapSymptom);
 	} 
 }

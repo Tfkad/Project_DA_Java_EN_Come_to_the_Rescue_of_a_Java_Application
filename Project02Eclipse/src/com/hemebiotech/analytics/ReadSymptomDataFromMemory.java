@@ -3,9 +3,21 @@ package com.hemebiotech.analytics;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Provides symptom data stored in memory
+ *
+ * This class implements the {@code ISymptomReader} interface and returns
+ * a predefined list of symptoms. It is mainly intended for testing or
+ * demonstration purposes
+ */
+
 public class ReadSymptomDataFromMemory implements ISymptomReader {
-	// constructeur par défaut suffisant car pas de parametre
 	
+	/*
+     * Returns the list of symptoms stored in memory
+     *
+     * @return a list of symptom names
+     */
 	@Override
 	public List<String> GetSymptoms() {
 		ArrayList<String> result = new ArrayList<String>();

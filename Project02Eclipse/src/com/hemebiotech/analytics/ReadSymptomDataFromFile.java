@@ -8,18 +8,39 @@ import java.util.List;
 
 /**
  * Simple brute force implementation
+ * 
+ * Reads symptom data from a text file
  *
+ * This class implements the {@code ISymptomReader} interface and returns
+ * the symptoms contained in a file
+ * 
+ * The input file must contain one symptom per line
  */
 
 public class ReadSymptomDataFromFile implements ISymptomReader {
-	private String filepath;
-	// @param filepath a full or partial path to file with symptom strings in it, one per line
 	
-	// Constructeur avec parametre	
+	// Path to the file containing the symptom data, one per line
+    private String filepath;
+		
+	/*
+	 * Constructor with parameter
+	 * 
+     * Creates a new reader that reads symptom data from the specified file
+     *
+     * @param filepath the full or relative path to the file containing
+     * one symptom per line
+     */
 	public ReadSymptomDataFromFile (String filepath) {
 		this.filepath = filepath;
 	}
 	
+	/*
+     * Reads all symptoms from the input file
+     *
+     * @return a list containing all the symptoms read from the file;
+     * returns an empty list if the file path is {@code null}
+     * or if an I/O error occurs
+     */
 	@Override
 	public List<String> GetSymptoms() {
 		ArrayList<String> result = new ArrayList<String>();
