@@ -12,13 +12,10 @@ import java.util.List;
  */
 
 public class ReadSymptomDataFromFile implements ISymptomReader {
-
 	private String filepath;
-	
 	// @param filepath a full or partial path to file with symptom strings in it, one per line
 	
-	// Constructeur avec parametre
-	
+	// Constructeur avec parametre	
 	public ReadSymptomDataFromFile (String filepath) {
 		this.filepath = filepath;
 	}
@@ -26,7 +23,6 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	@Override
 	public List<String> GetSymptoms() {
 		ArrayList<String> result = new ArrayList<String>();
-		
 		if (filepath != null) {
 			try {
 				BufferedReader reader = new BufferedReader (new FileReader(filepath));

@@ -10,123 +10,76 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class AnalyticsCounter {
-	private static int headacheCount = 0;	// initialize to 0 
-	private static int rashCount = 0;		// initialize to 0
-	private static int pupilCount = 0;		// initialize to 0
-	
-	
+	// private static int headacheCount = 0;	// initialize to 0 
+	// private static int rashCount = 0;		// initialize to 0
+	// private static int pupilCount = 0;		// initialize to 0
+		
 	// File workDir = new File(System.getProperty("user.dir"));
 	// File resourcesDir = new File(workDir, "resources") 
 	
 	private static String chemin = "C:\\Users\\C_local\\Documents\\Openclassrooms\\Developpeur_Java\\Projet_2\\Project_DA_Java_EN_Come_to_the_Rescue_of_a_Java_Application\\\\Project02Eclipse\\";
 	
 	public static List <String> getSymptoms() {
-		
 		// creation objet readSymptom de type ISymptomReader (qui est une interface) et de classe ReadSymptomDataFromFile
 		ISymptomReader readSymptom = new ReadSymptomDataFromFile(chemin + "symptoms.txt");
-				
-		// création objet Map clé=symptom et valeur=nb symptom
-		Map<String, Integer> SymptomMap = new HashMap <>();
-						
+		
 		// remplir une liste à partir du fichier
 		return readSymptom.GetSymptoms();
-		
 	}
 	
 	public static Map <String, Integer> countSymptoms(List <String> listSymptoms) {
-		return null;
-	} 
-	
-	public static Map <String, Integer> sortSymptoms(Map <String, Integer> mapSymptoms) {
-		
-		/*
-		 * transformer la HasMap en TreeMap
-		 * trier par valeur
-		 */
-		
-		Map<String, Integer> SymptomMap = new TreeMap <>();
-		
-		return null;
-	} 
-	
-	public static void writeSymptoms(Map <String, Integer> mapSymptoms) {
-		
-	} 
-	
-	public static void main(String args[]) throws Exception {
-		
-		List<String> listSymptom = AnalyticsCounter.getSymptoms();
-		
-		/* countSymptoms
-		 * sortSymptoms
-		 * writeSymptoms
-		 */
+		// création objet clé=symptom et valeur=nb symptom
+		Map<String, Integer> symptomMap = new HashMap <>();
 				
-		// countSymptoms boucler sur la ArrayList listSymptom 
-		for(String symptom : listSymptom) {
-			
+		// countSymptoms boucler sur la ArrayList listSymptoms 
+		for(String symptom : listSymptoms) {
 			// ajout si clé non trouvé dans la map
-			if (!SymptomMap.containsKey(symptom)) {
-				SymptomMap.put(symptom, 1);
-				
+			if (!symptomMap.containsKey(symptom)) {
+				symptomMap.put(symptom, 1);
 			}
 			else {
 				// incrémente la valeur si clé existe déjà dans la Map
-				SymptomMap.replace(symptom, SymptomMap.get(symptom)+1);
+				symptomMap.replace(symptom, symptomMap.get(symptom)+1);
 			}
-			
-			// print de la List
-			// System.out.println(symptom);
 		}
-		
-		// Print de la Map
-		//System.out.println(SymptomMap);
-	
-		// creation objet writeSymptom de type ISymptomWriter (qui est une interface) et de classe WriteSymptomDataFromFile 
-		ISymptomWriter writeSymptom = new WriteSymptomDataFromFile(chemin, SymptomMap);
-		
-		writeSymptom.WriteSymptoms(SymptomMap);
-		
-		
-		
-		
-		
-		
-				
-				
-		
-		
-		/*		
-		// first get input
-		BufferedReader reader = new BufferedReader (new FileReader(chemin + "symptoms.txt"));
-		String line = reader.readLine();
-
-		int i = 0;	// set i to 0 // err i est inutile
-		// int headacheCount = 0;	// err déjà déclaré
-		while (line != null) {
-			i++;	// increment i
-			System.out.println("symptom from file: " + line);
-			if (line.equals("headache")) {
-				headacheCount++; // err headacheCount vs headCount
-				System.out.println("number of headaches: " + headacheCount); // err headacheCount vs headCount
-			}
-			else if (line.equals("rash")) { // err rash vs rush
-				rashCount++;
-			}
-			else if (line.contains("pupils")) {
-				pupilCount++;
-			}
-
-			line = reader.readLine();	// get another symptom
-		}
-		
-		// next generate output
-		FileWriter writer = new FileWriter (chemin + "result.out"); // err ajout chemin
-		writer.write("headache: " + headacheCount + "\n");
-		writer.write("rash: " + rashCount + "\n");
-		writer.write("dialated pupils: " + pupilCount + "\n");
-		writer.close();
-		 */
+		return symptomMap;
 	} 
+
+	public static Map <String, Integer> sortSymptoms(Map <String, Integer> mapSymptoms) {
+		// transformer la HasMap en TreeMap (trié)
 		
+		// création objet clé=symptom et valeur=nb symptom
+		Map <String, Integer> treeSymptomMap = new TreeMap <>();
+		
+		for (Map.Entry<String, Integer> entry : mapSymptoms.entrySet()) {
+			treeSymptomMap.putAll(mapSymptoms);
+		}	
+		return treeSymptomMap;
+	} 
+	
+	public static void writeSymptoms(Map <String, Integer> mapSymptoms) {
+		// creation objet writeSymptom de type ISymptomWriter (qui est une interface) et de classe WriteSymptomDataFromFile 
+		ISymptomWriter writeSymptom = new WriteSymptomDataFromFile(chemin, mapSymptoms);
+				
+		// écrire dans un fichier les symptomes et les qté
+		writeSymptom.WriteSymptoms(mapSymptoms);
+	} 
+	
+	public static void main(String args[]) throws Exception {
+		// lecture du fichier des symptomes
+		List<String> listSymptom = AnalyticsCounter.getSymptoms();
+		
+		// compter par symptome				
+		Map <String, Integer> mapSymptom = AnalyticsCounter.countSymptoms(listSymptom);
+		
+		// tri des symptomes	
+		Map <String, Integer> treeMapSymptom = AnalyticsCounter.sortSymptoms(mapSymptom);
+		
+		// Print avant et après le tri
+		System.out.println(mapSymptom);
+		System.out.println(treeMapSymptom);
+		
+		// enregistrement des résultats dans un fichier
+		AnalyticsCounter.writeSymptoms(treeMapSymptom);
+	} 
 }

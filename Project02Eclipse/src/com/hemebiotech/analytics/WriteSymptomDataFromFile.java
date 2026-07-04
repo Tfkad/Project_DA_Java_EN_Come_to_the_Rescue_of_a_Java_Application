@@ -13,7 +13,6 @@ import java.util.Map;
  */
 
 public class WriteSymptomDataFromFile implements ISymptomWriter {
-
 	private String filepath;
 	private Map<String, Integer> SymptomMap;
 	
@@ -25,22 +24,15 @@ public class WriteSymptomDataFromFile implements ISymptomWriter {
 		
 	@Override
 	public void WriteSymptoms(Map<String, Integer> SymptomMap) {
-		
 		try (FileWriter writer = new FileWriter(filepath + "output.txt") ) {
-			
 			for (Map.Entry<String, Integer> entry : SymptomMap.entrySet()) {
-				
-				System.out.println(entry.getKey() + " : " + entry.getValue() + "\r\n");
-				
+				// System.out.println(entry.getKey() + " : " + entry.getValue() + "\r\n");
 				writer.write(entry.getKey() + " : " + entry.getValue() + "\r\n");
 			}	
-			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-				
 	} 
 }
 
