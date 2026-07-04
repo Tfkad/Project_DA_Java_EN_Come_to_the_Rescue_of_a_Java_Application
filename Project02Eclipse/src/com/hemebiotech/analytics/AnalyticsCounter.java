@@ -1,9 +1,5 @@
 package com.hemebiotech.analytics;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,14 +14,11 @@ import java.util.TreeMap;
  */
 
 public class AnalyticsCounter {
-		
-	// File workDir = new File(System.getProperty("user.dir"));
-	// File resourcesDir = new File(workDir, "resources")
 	
 	// Path to the project directory containing the input and output files
 	private static String chemin = "C:\\Users\\C_local\\Documents\\Openclassrooms\\Developpeur_Java\\Projet_2\\Project_DA_Java_EN_Come_to_the_Rescue_of_a_Java_Application\\\\Project02Eclipse\\";
 	
-	/*
+	/**
      * Reads the list of symptoms from the input file
      *
      * @return a list containing all symptoms read from the data source
@@ -35,7 +28,7 @@ public class AnalyticsCounter {
 		return readSymptom.GetSymptoms();
 	}
 	
-	/*
+	/**
      * Counts the number of occurrences of each symptom
      *
      * @param listSymptoms the list of symptoms to analyze
@@ -55,7 +48,7 @@ public class AnalyticsCounter {
 		return symptomMap;
 	} 
 
-	/*
+	/**
      * Sorts the symptoms alphabetically
      *
      * @param mapSymptoms the map containing symptom counts
@@ -65,12 +58,13 @@ public class AnalyticsCounter {
 	public static Map <String, Integer> sortSymptoms(Map <String, Integer> mapSymptoms) {
 		Map <String, Integer> treeSymptomMap = new TreeMap <>();
 		for (Map.Entry<String, Integer> entry : mapSymptoms.entrySet()) {
-			treeSymptomMap.putAll(mapSymptoms);
+			// treeSymptomMap.putAll(mapSymptoms);
+			treeSymptomMap.put(entry.getKey(), entry.getValue());
 		}	
 		return treeSymptomMap;
 	} 
 	
-	/*
+	/**
      * Writes the symptom statistics to the output file
      *
      * @param mapSymptoms the map containing the sorted symptom counts
@@ -80,7 +74,7 @@ public class AnalyticsCounter {
 		writeSymptom.WriteSymptoms(mapSymptoms);
 	} 
 	
-	/*
+	/**
      * Runs the application
      *
      * The program performs the following steps:
@@ -103,3 +97,8 @@ public class AnalyticsCounter {
 		AnalyticsCounter.writeSymptoms(treeMapSymptom);
 	} 
 }
+
+
+// File workDir = new File(System.getProperty("user.dir"));
+// File resourcesDir = new File(workDir, "resources")
+	

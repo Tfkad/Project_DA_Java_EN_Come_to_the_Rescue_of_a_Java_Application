@@ -1,7 +1,5 @@
 package com.hemebiotech.analytics;
 
-import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,7 +12,7 @@ import java.util.Map;
 
 public interface ISymptomWriter {
 	
-	/*
+	/**
      * Writes the symptom data
      * 
      * @param SymptomMap a map containing symptom names as keys and their

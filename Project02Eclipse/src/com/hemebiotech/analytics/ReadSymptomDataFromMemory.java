@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ReadSymptomDataFromMemory implements ISymptomReader {
 	
-	/*
+	/**
      * Returns the list of symptoms stored in memory
      *
      * @return a list of symptom names

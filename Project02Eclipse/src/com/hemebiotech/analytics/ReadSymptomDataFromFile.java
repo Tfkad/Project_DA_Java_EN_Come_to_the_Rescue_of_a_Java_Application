@@ -22,7 +22,7 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	// Path to the file containing the symptom data, one per line
     private String filepath;
 		
-	/*
+	/**
 	 * Constructor with parameter
 	 * 
      * Creates a new reader that reads symptom data from the specified file
@@ -34,7 +34,7 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 		this.filepath = filepath;
 	}
 	
-	/*
+	/**
      * Reads all symptoms from the input file
      *
      * @return a list containing all the symptoms read from the file;
