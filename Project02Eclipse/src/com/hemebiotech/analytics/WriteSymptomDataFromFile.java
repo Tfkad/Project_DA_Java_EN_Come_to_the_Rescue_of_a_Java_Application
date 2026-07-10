@@ -6,7 +6,7 @@ import java.util.Map;
 
 /**
  * Writes symptom data and their occurrence counts to a text file
- * 
+ * <p>
  * This class implements the {@code ISymptomWriter} interface and saves
  * the content of a map into an output file named {@code output.txt}
  */
@@ -21,9 +21,9 @@ public class WriteSymptomDataFromFile implements ISymptomWriter {
 	
 	/**
 	 * Creates a new writer for symptom data
-	 * 
+	 * <p>
      * @param filepath the path to the directory where the output file will be created
-     * 
+     * <p>
      * @param symptomMap the map containing symptoms and their occurrence counts
 	 */
 	public WriteSymptomDataFromFile (String filepath, Map<String, Integer> symptomMap) {
@@ -33,9 +33,9 @@ public class WriteSymptomDataFromFile implements ISymptomWriter {
 		
 	/**
      * Writes the symptom data to the {@code output.txt} file
-     * 
+     * <p>
      * Each entry is written on a separate line
-     * 
+     * <p>
      * @param symptomMap the map containing the symptoms to write
      */
 	@Override

@@ -7,7 +7,7 @@ import java.util.TreeMap;
 
 /**
  * Provides utility methods to read, count, sort, and write symptom data
- *
+ * <p>
  * This class reads a list of symptoms from a data source, counts the number
  * of occurrences of each symptom, sorts the results alphabetically, and
  * writes the final statistics to an output file
@@ -20,7 +20,7 @@ public class AnalyticsCounter {
 	
 	/**
      * Reads the list of symptoms from the input file
-     *
+     * <p>
      * @return a list containing all symptoms read from the data source
      */	
 	public static List <String> getSymptoms() {
@@ -30,7 +30,7 @@ public class AnalyticsCounter {
 	
 	/**
      * Counts the number of occurrences of each symptom
-     *
+     * <p>
      * @param listSymptoms the list of symptoms to analyze
      * @return a map where the key is the symptom name and the value is its
      * number of occurrences
@@ -50,7 +50,7 @@ public class AnalyticsCounter {
 
 	/**
      * Sorts the symptoms alphabetically
-     *
+     * <p>
      * @param mapSymptoms the map containing symptom counts
      * @return a {@code TreeMap} containing the same entries sorted by symptom
      * name
@@ -66,7 +66,7 @@ public class AnalyticsCounter {
 	
 	/**
      * Writes the symptom statistics to the output file
-     *
+     * <p>
      * @param mapSymptoms the map containing the sorted symptom counts
      */
 	public static void writeSymptoms(Map <String, Integer> mapSymptoms) {
@@ -76,15 +76,15 @@ public class AnalyticsCounter {
 	
 	/**
      * Runs the application
-     *
+     * <p>
      * The program performs the following steps:
-     *
+     * <p>
      * Reads the symptoms from the input file
      * Counts the occurrences of each symptom
      * Sorts the symptoms alphabetically
      * Displays the results in the console
      * Writes the results to an output file
-     * 
+     * <p>
      * @param args command-line arguments (not used)
      * @throws Exception if an unexpected error occurs during execution
      */
